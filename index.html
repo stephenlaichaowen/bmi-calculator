@@ -125,7 +125,7 @@
         }
       },
       getResults() {
-        if ((this.height || this.weight) === null) {
+        if ((this.height === null) || (this.weight === null)) {
           alert('Please enter your height and weight !!');
           return
         }
