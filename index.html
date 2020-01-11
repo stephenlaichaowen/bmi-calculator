@@ -53,12 +53,21 @@
     </div>
     <div class="content font-family-JhengHei">
       <p class="title">BMI 紀錄</p>      
-        <div class="table-responsive">
-          <table class="table" v-for="(data, index) in datas" :style="{borderLeft: `${data.listBorder}`}">           
-            <tbody>
+        <div class="table-responsive-sm">
+          <table class="table">         
+            <thead>
               <tr>
-                <th scope="row" class="font-weight-bold">{{ data.state }}</th>
-                <td>BMI {{ data.bmi }}</td>
+                <th scope="col">狀態</th>
+                <th scope="col">BMI</th>
+                <th scope="col">體重</th>
+                <th scope="col">身高</th>
+                <th scope="col">日期</th>
+              </tr>
+            </thead>  
+            <tbody v-for="(data, index) in datas" :style="{borderLeft: `${data.listBorder}`}">
+              <tr>                
+                <td class="font-weight-bold">{{ data.state }}</td>
+                <td>{{ data.bmi }}</td>
                 <td>{{ data.weight }} kg</td>
                 <td>{{ data.height }} cm</td>      
                 <td id="date">{{ data.time }}</td>
