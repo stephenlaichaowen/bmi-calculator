@@ -127,6 +127,7 @@
       getResults() {
         if ((this.height || this.weight) === null) {
           alert('Please enter your height and weight !!');
+          return
         }
 
         let m = this.height / 100
