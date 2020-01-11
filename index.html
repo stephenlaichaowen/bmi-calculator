@@ -32,14 +32,14 @@
         <div ref="col2" id="col2" class="col-md-4 d-flex justify-content-center">
           <div class="input">
             <p id="height" class="mb-2">身高 cm</p>
-            <input type="text" placeholder="請輸入身高" id="cm" v-model="height">
+            <input type="text" placeholder="請輸入身高" id="cm" v-model="height" class="outline-none">
             
             <p id="weight" class="mt-3 mb-2">體重 kg</p>
-            <input type="text" placeholder="請輸入體重" id="kg" v-model="weight">
+            <input type="text" placeholder="請輸入體重" id="kg" v-model="weight" class="outline-none">
           </div>
         </div>
         <div ref="col3" id="col3" class="col-md-4 d-flex justify-content-center align-items-center ">
-          <button v-if="show.btnValue" id="resultBtn" @click="getResults">看結果</button>
+          <button v-if="show.btnValue" id="resultBtn" @click="getResults" class="outline-none">看結果</button>
           <div v-else id="changeBtn" >            
             <div id="result" :style="{border: `${border}`}">
               <p id="num" :style="{color: `${textColor}`}" class="fontColor">{{ bmi }}</p>
@@ -51,25 +51,25 @@
         </div>
       </div>
     </div>
-    <div class="content">
+    <div class="content font-family-JhengHei">
       <p class="title">BMI 紀錄</p>      
         <div class="table-responsive">
-          <table class="table" v-for="(data, index) in datas" :style="{borderLeft: `${data.listBorder}`}">     
+          <table class="table" v-for="(data, index) in datas" :style="{borderLeft: `${data.listBorder}`}">           
             <tbody>
-              <tr class="font-family-JhengHei">
-                <th id="state" class="font-size-20px">{{ data.state }}</th>
-                <td class="BMI font-size-12px">BMI <span id="BMINum" class="font-size-20px"> {{ data.bmi }}</span></td>
-                <td class="weight font-size-12px">weight <span id="weightNum" class="font-size-20px"> {{ data.weight }}kg</span></td>
-                <td class="height font-size-12px">height <span id="heightNum" class="font-size-20px"> {{ data.height }}cm</span></td>
+              <tr>
+                <th scope="row" class="font-weight-bold">{{ data.state }}</th>
+                <td>BMI {{ data.bmi }}</td>
+                <td>{{ data.weight }} kg</td>
+                <td>{{ data.height }} cm</td>      
                 <td id="date">{{ data.time }}</td>
                 <td class="float-left" id="delete">
-                  <button type="button" class="close" aria-label="Close" @click="deleteRecord(index)">
+                  <button type="button" class="close" aria-label="Close" @click="deleteRecord(index)" style="outline:none">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                </td>
-              </tr>      
+                </td>          
+              </tr>           
             </tbody>
-          </table>
+          </table>         
         </div>      
     </div>
     <div class="footer d-flex justify-content-center align-items-center">
@@ -116,6 +116,10 @@
         }
       },
       getResults() {
+        if ((this.height || this.weight) === null) {
+          alert('Please enter your height and weight !!');
+        }
+
         let m = this.height / 100
 
         this.bmi = parseFloat(((this.weight) / (m * m)).toFixed(2))
@@ -176,10 +180,7 @@
           bmi: this.bmi,
           weight: this.weight,
           height: this.height,
-          time: recordDate,
-          // clearBG: this.clearBG,
-          // border: this.border,
-          // textColor: this.textColor,
+          time: recordDate,        
           listBorder: this.listBorder
         };
         this.datas.push(data);
