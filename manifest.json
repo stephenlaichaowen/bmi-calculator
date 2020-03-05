@@ -3,7 +3,8 @@
   "short_name": "BMI Calculator",
   "theme_color": "#ffffff",
   "background_color": "#424242",
-  "display": "standalone",
+  "display": "fullscreen",
+  "orientation": "portrait",
   "Scope": ".",
   "start_url": ".",
   "icons": [
